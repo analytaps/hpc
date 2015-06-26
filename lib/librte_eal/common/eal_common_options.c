@@ -44,7 +44,6 @@
 #include <rte_log.h>
 #include <rte_lcore.h>
 #include <rte_version.h>
-#include <rte_devargs.h>
 #include <rte_memcpy.h>
 
 #include "eal_internal_cfg.h"
@@ -79,7 +78,6 @@ eal_long_options[] = {
 	{OPT_PROC_TYPE,         1, NULL, OPT_PROC_TYPE_NUM        },
 	{OPT_SOCKET_MEM,        1, NULL, OPT_SOCKET_MEM_NUM       },
 	{OPT_SYSLOG,            1, NULL, OPT_SYSLOG_NUM           },
-	{OPT_VDEV,              1, NULL, OPT_VDEV_NUM             },
 	{0,                     0, NULL, 0                        }
 };
 
@@ -110,10 +108,6 @@ eal_reset_internal_config(struct internal_config *internal_cfg)
 	/* default value from build option */
 	internal_cfg->log_level = RTE_LOG_LEVEL;
 
-	internal_cfg->xen_dom0_support = 0;
-
-	/* if set to NONE, interrupt mode is determined automatically */
-	internal_cfg->vfio_intr_mode = RTE_INTR_MODE_NONE;
 
 #ifdef RTE_LIBEAL_USE_HPET
 	internal_cfg->no_hpet = 0;
@@ -716,13 +710,6 @@ eal_parse_common_option(int opt, const char *optarg,
 		}
 		break;
 
-	case OPT_VDEV_NUM:
-		if (rte_eal_devargs_add(RTE_DEVTYPE_VIRTUAL,
-				optarg) < 0) {
-			return -1;
-		}
-		break;
-
 	case OPT_SYSLOG_NUM:
 		if (eal_parse_syslog(optarg, conf) < 0) {
 			RTE_LOG(ERR, EAL, "invalid parameters for --"
@@ -846,7 +833,6 @@ eal_common_usage(void)
 	       "  -n CHANNELS         Number of memory channels\n"
 	       "  -m MB               Memory to allocate (see also --"OPT_SOCKET_MEM")\n"
 	       "  -r RANKS            Force number of memory ranks (don't detect)\n"
-	       "  --"OPT_VDEV"              Add a virtual device.\n"
 	       "                      The argument format is <driver><id>[,key=val,...]\n"
 	       "                      (ex: --vdev=eth_pcap0,iface=eth2).\n"
 	       "  --"OPT_PROC_TYPE"         Type of this process (primary|secondary|auto)\n"

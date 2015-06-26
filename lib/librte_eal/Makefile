@@ -34,6 +34,5 @@ include $(RTE_SDK)/mk/rte.vars.mk
 DIRS-$(CONFIG_RTE_LIBRTE_EAL_LINUXAPP) += common
 DIRS-$(CONFIG_RTE_LIBRTE_EAL_LINUXAPP) += linuxapp
 DIRS-$(CONFIG_RTE_LIBRTE_EAL_BSDAPP) += common
-DIRS-$(CONFIG_RTE_LIBRTE_EAL_BSDAPP) += bsdapp
 
 include $(RTE_SDK)/mk/rte.subdir.mk

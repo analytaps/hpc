@@ -40,7 +40,6 @@
 #define EAL_INTERNAL_CFG_H
 
 #include <rte_eal.h>
-#include <rte_pci_dev_feature_defs.h>
 
 #define MAX_HUGEPAGE_SIZES 3  /**< support up to 3 page sizes */
 
@@ -64,11 +63,8 @@ struct internal_config {
 	volatile unsigned force_nchannel; /**< force number of channels */
 	volatile unsigned force_nrank;    /**< force number of ranks */
 	volatile unsigned no_hugetlbfs;   /**< true to disable hugetlbfs */
-	volatile unsigned xen_dom0_support; /**< support app running on Xen Dom0*/
-	volatile unsigned no_pci;         /**< true to disable PCI */
 	volatile unsigned no_hpet;        /**< true to disable HPET */
 	volatile unsigned no_shconf;      /**< true if there is no shared config */
-	volatile unsigned create_uio_dev; /**< true to create /dev/uioX devices */
 	volatile enum rte_proc_type_t process_type; /**< multi-process proc type */
 	/** true to try allocating memory on specific sockets */
 	volatile unsigned force_sockets;
@@ -76,8 +72,6 @@ struct internal_config {
 	uintptr_t base_virtaddr;          /**< base address to try and reserve memory from */
 	volatile int syslog_facility;	  /**< facility passed to openlog() */
 	volatile uint32_t log_level;	  /**< default log level */
-	/** default interrupt mode for VFIO */
-	volatile enum rte_intr_mode vfio_intr_mode;
 	const char *hugefile_prefix;      /**< the base filename of hugetlbfs files */
 	const char *hugepage_dir;         /**< specific hugetlbfs directory to use */
 

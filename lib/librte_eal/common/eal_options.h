@@ -65,8 +65,6 @@ enum {
 	OPT_SOCKET_MEM_NUM,
 #define OPT_SYSLOG            "syslog"
 	OPT_SYSLOG_NUM,
-#define OPT_VDEV              "vdev"
-	OPT_VDEV_NUM,
 	OPT_LONG_MAX_NUM
 };
 

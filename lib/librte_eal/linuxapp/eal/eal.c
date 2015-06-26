@@ -68,7 +68,6 @@
 #include <rte_cycles.h>
 #include <rte_string_fns.h>
 #include <rte_cpuflags.h>
-#include <rte_devargs.h>
 #include <rte_common.h>
 #include <rte_version.h>
 #include <rte_atomic.h>
@@ -700,7 +699,6 @@ rte_eal_init(int argc, char **argv)
 
 	if (internal_config.no_hugetlbfs == 0 &&
 			internal_config.process_type != RTE_PROC_SECONDARY &&
-			internal_config.xen_dom0_support == 0 &&
 			eal_hugepage_info_init() < 0)
 		rte_panic("Cannot get hugepage information\n");
 

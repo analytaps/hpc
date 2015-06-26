@@ -119,67 +119,6 @@ int rte_eal_log_early_init(void);
 int rte_eal_log_init(const char *id, int facility);
 
 /**
- * Init the default log stream
- *
- * This function is private to EAL.
- *
- * @return
- *   0 on success, negative on error
- */
-int rte_eal_pci_init(void);
-
-#ifdef RTE_LIBRTE_IVSHMEM
-/**
- * Init the memory from IVSHMEM devices
- *
- * This function is private to EAL.
- *
- * @return
- *  0 on success, negative on error
- */
-int rte_eal_ivshmem_init(void);
-
-/**
- * Init objects in IVSHMEM devices
- *
- * This function is private to EAL.
- *
- * @return
- *  0 on success, negative on error
- */
-int rte_eal_ivshmem_obj_init(void);
-#endif
-
-struct rte_pci_driver;
-struct rte_pci_device;
-
-/**
- * Mmap memory for single PCI device
- *
- * This function is private to EAL.
- *
- * @return
- *   0 on success, negative on error
- */
-int rte_eal_pci_probe_one_driver(struct rte_pci_driver *dr,
-		struct rte_pci_device *dev);
-
-/**
- * Munmap memory for single PCI device
- *
- * This function is private to EAL.
- *
- * @param	dr
- *  The pointer to the pci driver structure
- * @param	dev
- *  The pointer to the pci device structure
- * @return
- *   0 on success, negative on error
- */
-int rte_eal_pci_close_one_driver(struct rte_pci_driver *dr,
-		struct rte_pci_device *dev);
-
-/**
  * Init tail queues for non-EAL library structures. This is to allow
  * the rings, mempools, etc. lists to be shared among multiple processes
  *
@@ -189,34 +128,6 @@ int rte_eal_pci_close_one_driver(struct rte_pci_driver *dr,
  *    0 on success, negative on error
  */
 int rte_eal_tailqs_init(void);
-
-/**
- * Init interrupt handling.
- *
- * This function is private to EAL.
- *
- * @return
- *  0 on success, negative on error
- */
-int rte_eal_intr_init(void);
-
-/**
- * Init alarm mechanism. This is to allow a callback be called after
- * specific time.
- *
- * This function is private to EAL.
- *
- * @return
- *  0 on success, negative on error
- */
-int rte_eal_alarm_init(void);
-
-/**
- * This function initialises any virtual devices
- *
- * This function is private to the EAL.
- */
-int rte_eal_dev_init(void);
 
 /**
  * Function is to check if the kernel module(like, vfio, vfio_iommu_type1,
